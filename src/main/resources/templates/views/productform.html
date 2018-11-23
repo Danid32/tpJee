@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Creation de Produit</h1>
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
+
+private String name;
+
+@Column(columnDefinition = "TEXT")
+private String description;
+
+private String imageurl;
+
+@Column(columnDefinition = "DECIMAL")
+private Double price;
+
+@Column(columnDefinition = "DATE")
+private String date;
+
+@ManyToOne
+@JsonBackReference
+private Seller seller;
+
+
+<form method="post" action="#" th:action="@{/seller/create}" th:object="${seller}">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label for="name">Nom : </label>
+        <input type="text" th:field="*{name}" name="name" id="name">
+    </div>
+    <div>
+        <label for="address">Adresse : </label>
+        <input type="text" th:field="*{address}" name="address" id="address">
+    </div>
+    <div>
+        <label for="zipcode">Zip code</label>
+        <input type="text" th:field="*{zipcode}" name="zipcode" id="zipcode">
+    </div>
+    <div>
+        <label for="city">Ville :</label>
+        <input type="text" th:field="*{city}" name="city" id="city">
+    </div>
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Reset" />
+</form>
+</body>
+</html>

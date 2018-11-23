@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    table{
+        min-width: 50%;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td{
+        border: 1px solid black;
+        padding: 4px 8px;
+    }
+</style>
+
+<body>
+<div th:if="${sellers != null}">
+    <h1>Liste des seller</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Adresse</th>
+            <th>Code</th>
+            <th>City</th>
+        </tr>
+        <th:block th:each="seller : ${sellers}">
+
+            <tr>
+                <td th:text="${seller.id}">...</td>
+                <td th:text="${seller.name}">...</td>
+                <td th:text="${seller.address}">...</td>
+                <td th:text="${seller.zipcode}">...</td>
+                <td th:text="${seller.city}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+<div th:unless="${sellers != null}">
+    <h1>Client <span th:text="${seller.name}"></span></h1>
+
+    <p th:text="'name: ' + ${seller.name}" />
+    <p th:text="'address: ' + ${seller.address}" />
+    <p th:text="'zipcode: ' + ${seller.zipcode}" />
+    <p th:text="'city: ' + ${seller.city}" />
+
+</div>
+
+</body>
+</html>
+

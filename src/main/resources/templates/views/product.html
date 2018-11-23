@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    table{
+        min-width: 50%;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td{
+        border: 1px solid black;
+        padding: 4px 8px;
+    }
+</style>
+
+<body>
+<div th:if="${products != null}">
+    <h1>Liste des produits</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Adresse</th>
+            <th>Code</th>
+            <th>City</th>
+        </tr>
+        <th:block th:each="product : ${products}">
+
+            <tr>
+                <td th:text="${product.id}">...</td>
+                <td th:text="${product.name}">...</td>
+                <td th:text="${product.description}">...</td>
+                <td th:text="${product.imageurl}">...</td>
+                <td th:text="${product.price}">...</td>
+                <td th:text="${product.date}">...</td>
+                <td th:text="${product.seller.id}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+<div th:unless="${products != null}">
+    <h1>Produit <span th:text="${product.name}"></span></h1>
+    <td th:text="${product.id}">...</td>
+    <td th:text="${product.name}">...</td>
+    <td th:text="${product.description}">...</td>
+    <td th:text="${product.imageurl}">...</td>
+    <td th:text="${product.price}">...</td>
+    <td th:text="${product.date}">...</td>
+    <td th:text="${product.seller.id}">...</td>
+</div>
+
+</body>
+</html>
+
